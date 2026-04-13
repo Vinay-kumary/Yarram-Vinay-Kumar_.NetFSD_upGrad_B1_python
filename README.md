@@ -1,16 +1,32 @@
-# E-Learning Platform
+# E-Learning Platform (Full Stack)
 
-## Features
-- Dashboard with course progress
-- Courses listing page
-- Interactive quiz system
-- Profile page
-
-## Technologies Used
-- HTML
-- CSS
-- JavaScript
+## 🚀 Technologies Used
+- ASP.NET Core Web API
+- SQL Server
+- HTML, CSS, JavaScript
 - Bootstrap
 
-## How to Run
-Open index.html in your browser
+## 📌 Features
+- User Registration
+- Course Management
+- Quiz System
+- Score Tracking
+- Dashboard with Progress
+
+## 🔄 Workflow
+User → Course → Lesson → Quiz → Question → Submit → Result
+
+## ▶️ How to Run
+
+### Backend
+cd Backend
+dotnet run
+
+### Frontend
+Open index.html using Live Server
+
+## 📊 API Testing
+Use Swagger UI to test APIs
+
+## 👨‍💻 Author
+Vinay Kumar

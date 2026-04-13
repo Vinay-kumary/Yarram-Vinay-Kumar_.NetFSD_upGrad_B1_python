@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SkillTrack Login</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    body{
+      margin:0;
+      font-family:Arial, sans-serif;
+    }
+
+    #loginPage{
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      background:linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
+      background-size:400% 400%;
+      animation:rainbow 8s infinite;
+      padding:20px;
+    }
+
+    @keyframes rainbow{
+      0%{background-position:0% 50%;}
+      50%{background-position:100% 50%;}
+      100%{background-position:0% 50%;}
+    }
+
+    .login-box{
+      background:white;
+      width:100%;
+      max-width:380px;
+      padding:30px;
+      border-radius:12px;
+      box-shadow:0 4px 14px rgba(0,0,0,0.25);
+    }
+
+    .login-box h3{
+      text-align:center;
+      margin-bottom:20px;
+      font-weight:bold;
+    }
+
+    .logout-message{
+      display:none;
+      text-align:center;
+      color:white;
+      font-size:22px;
+      font-weight:bold;
+      margin-top:20px;
+    }
+  </style>
+</head>
+<body>
+
+<div id="loginPage">
+  <div class="login-box">
+    <h3>SkillTrack Login</h3>
+
+    <input type="text" id="username" class="form-control mb-3" placeholder="Enter Username">
+    <input type="email" id="email" class="form-control mb-3" placeholder="Enter Email">
+    <input type="password" id="password" class="form-control mb-3" placeholder="Enter Password">
+
+    <button type="button" class="btn btn-primary w-100" onclick="registerUser()">Register</button>
+  </div>
+
+  <p id="logoutMessage" class="logout-message"></p>
+</div>
+
+<script>
+async function registerUser() {
+    const username = document.getElementById("username").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value.trim();
+
+    if (username === "" || email === "" || password === "") {
+        alert("Please fill all fields");
+        return;
+    }
+
+    try {
+        const response = await fetch("http://localhost:5000/api/Users/register", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                fullName: username,
+                email: email,
+                password: password
+            })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            alert(data.message || "Registration failed");
+            return;
+        }
+
+        localStorage.setItem("student", data.fullName);
+        localStorage.setItem("email", data.email);
+        localStorage.setItem("userId", data.userId);
+
+        alert("User Registered Successfully");
+        window.location.href = "dashboard.html";
+    }
+    catch (error) {
+        console.log("Register Error:", error);
+        alert("Backend not connected or server not running");
+    }
+}
+
+window.onload = function(){
+    const logoutMessage = document.getElementById("logoutMessage");
+    const message = sessionStorage.getItem("logoutMessage");
+
+    if(logoutMessage && message){
+        logoutMessage.innerText = message;
+        logoutMessage.style.display = "block";
+        sessionStorage.removeItem("logoutMessage");
+    }
+};
+</script>
+
+</body>
+</html>

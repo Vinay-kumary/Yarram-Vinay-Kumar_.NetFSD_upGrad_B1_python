@@ -1,0 +1,16 @@
+{
+"name": "mini-project1.e-learning",
+"version": "1.0.0",
+"description": "Multi-Page E-Learning Platform",
+"main": "script.js",
+"scripts": {
+"test": "jest"
+},
+"keywords": [],
+"author": "",
+"license": "ISC",
+"type": "commonjs",
+"devDependencies": {
+"jest": "^30.3.0"
+}
+}

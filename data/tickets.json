@@ -1,0 +1,52 @@
+{
+    "tickets": [
+        {
+            "id": "TCK1001",
+            "name": "vinay",
+            "department": "IT",
+            "issue": "Laptop Issue",
+            "category": "Laptop Slow",
+            "priority": "P3",
+            "status": "Closed",
+            "created": "2026-04-28 10:13:09",
+            "updated": "2026-04-28 10:14:44",
+            "ticket_type": "Incident"
+        },
+        {
+            "id": "TCK1002",
+            "name": "System Monitor",
+            "department": "IT",
+            "issue": "Disk Free Space Low",
+            "category": "Server Down",
+            "priority": "P1",
+            "status": "Open",
+            "created": "2026-04-28 10:15:35",
+            "updated": "2026-04-28 10:15:35",
+            "ticket_type": "Incident"
+        },
+        {
+            "id": "TCK1003",
+            "name": "VINAY",
+            "department": "IT",
+            "issue": "LAPTOP ISSUE",
+            "category": "Laptop Slow",
+            "priority": "P3",
+            "status": "Closed",
+            "created": "2026-04-28 14:31:18",
+            "updated": "2026-04-28 14:35:54",
+            "ticket_type": "Incident"
+        },
+        {
+            "id": "TCK1004",
+            "name": "System Monitor",
+            "department": "IT",
+            "issue": "Disk Free Space Low",
+            "category": "Server Down",
+            "priority": "P1",
+            "status": "Open",
+            "created": "2026-04-28 14:37:07",
+            "updated": "2026-04-28 14:37:07",
+            "ticket_type": "Incident"
+        }
+    ]
+}

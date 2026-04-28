@@ -1,0 +1,5 @@
+id,name,department,issue,category,priority,status,created,updated
+TCK1001,vinay,IT,Laptop Issue,Laptop Slow,P3,Closed,2026-04-28 10:13:09,2026-04-28 10:14:44
+TCK1002,System Monitor,IT,Disk Free Space Low,Server Down,P1,Open,2026-04-28 10:15:35,2026-04-28 10:15:35
+TCK1003,VINAY,IT,LAPTOP ISSUE,Laptop Slow,P3,Closed,2026-04-28 14:31:18,2026-04-28 14:35:54
+TCK1004,System Monitor,IT,Disk Free Space Low,Server Down,P1,Open,2026-04-28 14:37:07,2026-04-28 14:37:07

@@ -1,0 +1,25 @@
+[2026-04-22 16:15:45] ERROR: tickets.json contains invalid JSON
+[2026-04-22 16:16:44] ERROR: tickets.json contains invalid JSON
+[2026-04-22 16:16:44] Ticket created: TCK1001 | Application crash | P2
+2026-04-22 16:25:22 - Ticket created: TCK1002 | Laptop Slow | P3
+2026-04-22 16:26:18 - 'TicketManager' object has no attribute 'search_ticket'
+2026-04-22 16:26:25 - 'Monitor' object has no attribute 'show_system_health'
+2026-04-22 16:26:28 - 'Monitor' object has no attribute 'show_system_health'
+2026-04-22 16:26:33 - 'Monitor' object has no attribute 'show_system_health'
+2026-04-22 16:53:24 - Created TCK1001
+2026-04-22 17:03:06 - Created TCK1002
+2026-04-22 17:04:06 - Created TCK1001
+2026-04-24 09:57:41 - Created TCK1001
+2026-04-24 11:29:57 - Created TCK1001
+[2026-04-28 10:09:48] [INFO] Ticket created: TCK1001
+[2026-04-28 10:13:09] [INFO] Ticket created: TCK1001
+[2026-04-28 10:14:25] [INFO] Ticket updated: TCK1001 -> In Progress
+[2026-04-28 10:14:44] [INFO] Ticket updated: TCK1001 -> Closed
+[2026-04-28 10:14:44] [INFO] Ticket closed: TCK1001
+[2026-04-28 10:15:35] [INFO] Ticket created: TCK1002
+[2026-04-28 10:15:35] [CRITICAL] Auto ticket created for disk low
+[2026-04-28 14:31:18] [INFO] Ticket created: TCK1003
+[2026-04-28 14:35:54] [INFO] Ticket updated: TCK1003 -> Closed
+[2026-04-28 14:35:54] [INFO] Ticket closed: TCK1003
+[2026-04-28 14:37:07] [INFO] Ticket created: TCK1004
+[2026-04-28 14:37:07] [CRITICAL] Auto ticket created for disk low

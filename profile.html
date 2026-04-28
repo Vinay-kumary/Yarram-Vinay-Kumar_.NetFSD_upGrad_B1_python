@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile - SkillTrack</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    body{
+      font-family:Arial, sans-serif;
+      margin:0;
+      background:#f4f6f9;
+    }
+
+    header{
+      background:#1f2a44;
+      color:white;
+      padding:15px;
+      text-align:center;
+    }
+
+    nav a{
+      color:white;
+      margin-right:20px;
+      text-decoration:none;
+      font-weight:bold;
+    }
+
+    nav a:hover{
+      text-decoration:underline;
+    }
+
+    .breadcrumb{
+      background:#ecf0f1;
+      padding:10px;
+    }
+
+    main{
+      padding:20px;
+    }
+
+    .profile-box,
+    .graph-box{
+      background:white;
+      padding:20px;
+      border-radius:8px;
+      box-shadow:0 3px 8px rgba(0,0,0,0.1);
+      height:100%;
+    }
+
+    .graph-box h4{
+      margin-bottom:20px;
+    }
+
+    footer{
+      background:#1f2a44;
+      color:white;
+      text-align:center;
+      padding:10px;
+      margin-top:20px;
+    }
+
+    #logoutBtn{
+      position:fixed;
+      bottom:20px;
+      right:20px;
+      background:#dc3545;
+      color:white;
+      border:none;
+      padding:12px 20px;
+      border-radius:30px;
+      font-weight:bold;
+      cursor:pointer;
+      box-shadow:0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    #logoutBtn:hover{
+      background:#b02a37;
+    }
+  </style>
+</head>
+<body onload="checkLogin(); renderProfile(); renderChart();">
+
+<header>
+  <h2>🎓 SkillTrack E-Learning Platform</h2>
+</header>
+
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand" href="dashboard.html">SkillTrack📚</a>
+    <div>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="courses.html">Courses</a>
+      <a href="quiz.html">Quiz</a>
+      <a href="profile.html">Profile</a>
+    </div>
+  </div>
+</nav>
+
+<div class="breadcrumb">Home > Profile</div>
+
+<main class="container-fluid">
+  <div class="row g-4">
+    <div class="col-lg-6">
+      <section class="profile-box">
+        <h3>Student Profile</h3>
+        <p><strong>Name:</strong> <span id="studentName"></span></p>
+        <p><strong>Email:</strong> <span id="studentEmail"></span></p>
+        <p><strong>College:</strong> Saveetha University</p>
+        <p><strong>Score:</strong> <span id="score"></span></p>
+        <p><strong>Grade:</strong> <span id="grade"></span></p>
+        <p><strong>Feedback:</strong> <span id="feedback"></span></p>
+        <p><strong>Completed Courses:</strong> <span id="completedCourses"></span></p>
+      </section>
+    </div>
+
+    <div class="col-lg-6">
+      <section class="graph-box">
+        <h4>Course Progress Graph</h4>
+        <canvas id="progressChart"></canvas>
+      </section>
+    </div>
+  </div>
+</main>
+
+<footer>
+  SkillTrack Learning System
+</footer>
+
+<button onclick="logout()" id="logoutBtn">🚪 Logout</button>
+
+<script>
+const courses = [
+  { name:"HTML" },
+  { name:"CSS" },
+  { name:"JavaScript" }
+];
+
+function checkLogin(){
+  const name = localStorage.getItem("student");
+  if(!name){
+    window.location.href = "index.html";
+  }
+}
+
+function getCourseProgress(courseName){
+  const videoDone = localStorage.getItem(courseName + "_video") === "true";
+  const quizDone = localStorage.getItem(courseName + "_quiz") === "true";
+
+  let progress = 0;
+  if(videoDone) progress += 50;
+  if(quizDone) progress += 50;
+
+  return progress;
+}
+
+function renderProfile(){
+  document.getElementById("studentName").innerText =
+    localStorage.getItem("student") || "No Name";
+
+  document.getElementById("studentEmail").innerText =
+    localStorage.getItem("email") || "No Email";
+
+  document.getElementById("score").innerText =
+    (localStorage.getItem("score") || 0) + "%";
+
+  document.getElementById("grade").innerText =
+    localStorage.getItem("grade") || "-";
+
+  document.getElementById("feedback").innerText =
+    localStorage.getItem("feedback") || "Not Attempted";
+
+  const completed = courses
+    .filter(c => getCourseProgress(c.name) === 100)
+    .map(c => c.name)
+    .join(", ");
+
+  document.getElementById("completedCourses").innerText =
+    completed || "None";
+}
+
+function renderChart(){
+  const htmlProgress = getCourseProgress("HTML");
+  const cssProgress = getCourseProgress("CSS");
+  const jsProgress = getCourseProgress("JavaScript");
+
+  const ctx = document.getElementById("progressChart").getContext("2d");
+
+  new Chart(ctx, {
+    type: "bar",
+    data: {
+      labels: ["HTML", "CSS", "JavaScript"],
+      datasets: [{
+        label: "Progress %",
+        data: [htmlProgress, cssProgress, jsProgress],
+        backgroundColor: [
+          "rgba(255, 99, 132, 0.7)",
+          "rgba(54, 162, 235, 0.7)",
+          "rgba(255, 206, 86, 0.7)"
+        ],
+        borderColor: [
+          "rgba(255, 99, 132, 1)",
+          "rgba(54, 162, 235, 1)",
+          "rgba(255, 206, 86, 1)"
+        ],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 100
+        }
+      }
+    }
+  });
+}
+
+function logout(){
+  const username = localStorage.getItem("student") || "User";
+  sessionStorage.setItem("logoutMessage", username + " Successfully Logout");
+  localStorage.clear();
+  window.location.href = "index.html";
+}
+</script>
+
+</body>
+</html>

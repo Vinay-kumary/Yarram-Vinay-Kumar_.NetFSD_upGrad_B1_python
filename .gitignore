@@ -1,2 +1,6 @@
+<<<<<<< HEAD
 _pycache_/
 *.pyc
+=======
+node_modules/
+>>>>>>> 754df560e48c87dcb1a9b8510f6a2b5f912a7518
